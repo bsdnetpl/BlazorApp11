@@ -2,7 +2,7 @@
 @attribute [StreamRendering(true)]
 @inject NavigationManager NavigationManager
 @inject IGameService GameService
-@attribute [RenderModeInteractiveServer(false)]
+
 
 <h3>GameList</h3>
 @if(games == null)
@@ -22,7 +22,8 @@ else
         }
     </ul>
 }
-<button @onclick="CreateGame" class="btn btn-primary">CreateGame</button>
+<CreateGameButton/>
+
 @code {
     [Parameter]
     public int? Id { get; set; }
@@ -31,8 +32,5 @@ else
     {
         games = await GameService.GetAllGames();
     }
-    void CreateGame()
-    {
-        NavigationManager.NavigateTo("/edit-game");
-    }
+
 }

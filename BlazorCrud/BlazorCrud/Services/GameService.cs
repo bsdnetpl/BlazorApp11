@@ -13,6 +13,13 @@ namespace BlazorCrud.Services
             _dataContext = dataContext;
         }
 
+        public async Task<Game> AddGame(Game game)
+        {
+            _dataContext.Games.Add(game);
+            await _dataContext.SaveChangesAsync();
+            return game;
+        }
+
         public async Task<List<Game>> GetAllGames()
         {
            var games = await  _dataContext.Games.ToListAsync();
